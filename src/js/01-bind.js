@@ -3,10 +3,10 @@
  * @param {Object} ctx
  * @param {Array} params
  */
-// Function.prototype.apply = function (ctx, params) {
-//   ctx.fn = this;
-//   return ctx.fn(...params);
-// };
+Function.prototype.apply = function (ctx, params) {
+  ctx.fn = this;
+  return ctx.fn(...params);
+};
 
 /**
  * mock bind
@@ -16,19 +16,19 @@
  * @param {object} ctx
  * @param  {...any} params
  */
-// Function.prototype.bind = function (ctx, ...params) {
-//   const self = this;
-//   function fn(args) {
-//     if (this instanceof fn) {
-//       const obj = new self(...params, ...args);
-//       obj.setPrototypeOf(self.prototype);
-//       return obj;
-//     }
-//     return self.apply(ctx, params.concat(args));
-//   }
+Function.prototype.bind = function (ctx, ...params) {
+  const self = this;
+  function fn(args) {
+    if (this instanceof fn) {
+      const obj = new self(...params, ...args);
+      obj.setPrototypeOf(self.prototype);
+      return obj;
+    }
+    return self.apply(ctx, params.concat(args));
+  }
 
-//   return fn;
-// };
+  return fn;
+};
 
 /**
  * someting may be you dont know
