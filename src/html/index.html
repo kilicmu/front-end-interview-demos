@@ -5,11 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <div>hello</div>
+    <style>
+        .container {
+            --radius: 10px;
+            width: 200px;
+            height: 80px;
+
+
+            outline: 10px solid rgb(251, 255, 0);
+            box-shadow: 0 0 0 1px rgb(0, 153, 255);
+            border-radius: var(--radius);
+            background: rgb(0, 153, 255);
+        }
+    </style>
 </head>
 
 <body>
-
+    <div class="container"></div>
 </body>
 
 </html>
