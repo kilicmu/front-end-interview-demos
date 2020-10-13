@@ -90,8 +90,8 @@ div {
 ```css
 div {
   --offset: 10px;
-  background: url(http://csssecrets.io/images/code-pirate.svg) no-repeat bottom calc(100% - var(--offset))
-    right calc(100% - var(--offset)) #58a; // calc中的运算符必有空格分隔
+  background: url(http://csssecrets.io/images/code-pirate.svg) no-repeat bottom
+    calc(100% - var(--offset)) right calc(100% - var(--offset)) #58a; // calc中的运算符必有空格分隔
   background-origin: content-box;
 
   max-width: 10em;
@@ -107,15 +107,87 @@ div {
 
 ```css
 div {
-	outline: .6em solid #655;
-	box-shadow: 0 0 0 .4em #655; /* todo calculate max of this */
-	
-	max-width: 10em;
-	border-radius: .8em;
-	padding: 1em;
-	margin: 1em;
-	background: tan;
-	font: 100%/1.5 sans-serif;
+  outline: 0.6em solid #655;
+  box-shadow: 0 0 0 0.4em #655; /* todo calculate max of this */
+
+  max-width: 10em;
+  border-radius: 0.8em;
+  padding: 1em;
+  margin: 1em;
+  background: tan;
+  font: 100%/1.5 sans-serif;
 }
 ```
 
+### 条纹问题
+
+desc：使用 CSS 创建一套条纹样式
+
+tips：可以使用 background-size 属性设置背景属性的平铺
+
+几种情况：
+
+1. 横条纹？？
+
+   ```css
+   .concentric {
+     width: 200px;
+     height: 80px;
+     background: linear-gradient(
+       pink 33.3%,
+       green 0,
+       green 66.6%,
+       red 0
+     ); // 可以按需增加条纹数量
+     background-size: 100% 20px; // 控制background的宽度100%， 高度20px，此时会因为background-repeat：repeat; 触发自动平铺
+   }
+   ```
+
+   效果：
+
+   ![横条纹](https://i.niupic.com/images/2020/10/13/8S1J.png)
+
+2. 竖条纹？？
+
+   ```css
+   .concentric {
+     width: 200px;
+     height: 80px;
+     background: linear-gradient(
+       to right,
+       // 此处需要修改默认的渐变方向
+       pink 33.3%,
+       green 0,
+       green 66.6%,
+       red 0
+     );
+     background-size: 20px 100%; // 将size设置为高度100&
+   }
+   ```
+
+   效果图：
+
+   ![竖条纹](https://i.niupic.com/images/2020/10/13/8S1C.png)
+
+3. 斜条纹？？活用 repeating-linear-gradient
+
+   ```css
+   .concentric {
+     width: 200px;
+     height: 80px;
+     background: repeating-linear-gradient(
+       45deg,
+       red,
+       // 默认值起始 0
+       red 15px,
+       // 默认值15px
+       green 0,
+       // 默认起始值 15px
+       green 30px // 渐变终止
+     );
+   }
+   ```
+
+   效果：
+
+   ![斜条纹](https://i.niupic.com/images/2020/10/13/8S1y.png)
