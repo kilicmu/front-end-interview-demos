@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="jsContainer">
+        <ul class="js-test" id="jsParent">
+            <li data-index="0">1</li>
+            <li data-index="1">2</li>
+        </ul>
+        <span style="font-weight: bold;">3</span>
+        4
+    </div>
+    <script>
+        function dom2json() {
+            const dom = document.querySelector("#jsContainer");
+            function helper(dom) {
+                const ret = {};
+                ret["tag"] = dom.tagName.toLowerCase();
+
+                // parse attr
+                ret["attributes"] = {}
+                for (let key of dom.getAttributeNames()) {
+                    ret["attributes"][key] = dom.getAttribute(key);
+                }
+
+                // parse children
+                ret["children"] = [];
+                for (let child of dom.childNodes) {
+                    if (child.nodeType == 1) {
+                        ret["children"].push(helper(child));
+                    } else {
+                        const content = child.data.trim();
+                        if (content === "") {
+                            continue;
+                        }
+                        const textNode = {
+                            "tag": "text",
+                            content
+                        }
+                        ret["children"].push(textNode)
+                    }
+                }
+
+                return ret;
+
+            }
+
+            return helper(dom)
+        }
+        console.log(dom2json())
+    </script>
+</body>
+
+</html>
