@@ -20,7 +20,6 @@ function QSort(arr) {
   const left = [],
     right = [];
   const [sentry] = arr.splice(mid, 1);
-  console.log(mid);
 
   for (let item of arr) {
     if (item > sentry) {
@@ -32,3 +31,27 @@ function QSort(arr) {
 
   return QSort(left).concat([sentry], QSort(right));
 }
+
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const lArr = arr.slice(0, mid);
+  const rArr = arr.slice(mid);
+  return merge(mergeSort(lArr), mergeSort(rArr));
+
+  function merge(left, right) {
+    const ret = [];
+    while (left.length && right.length) {
+      if (left[0] > right[0]) {
+        ret.push(right.shift());
+      } else {
+        ret.push(left.shift());
+      }
+    }
+    return ret.concat(left, right);
+  }
+}
+
+
+console.log(mergeSort([1, 3, 5, 2, 15, 6, 8, 10]))

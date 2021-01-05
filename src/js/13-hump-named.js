@@ -7,10 +7,8 @@
 function toHump(str) {
   while (true) {
     const idx = str.indexOf("-");
-    console.log(idx);
     if (idx === -1 || idx === str.length - 1) break;
     const tmp = str[idx + 1];
-    console.log(str, tmp);
     str = str.replace(`-${tmp}`, tmp.toUpperCase());
   }
 
