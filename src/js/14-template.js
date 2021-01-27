@@ -1,26 +1,30 @@
 const template = `
     <div>
         <ul>
-            <li>{{name}}</li>
-            <li>{{age}}</li>
+            {%arr.forEach((item) => {%}
+              <li>{{item}}</li>
+            {%})%}
         </ul>
     </div>
 `;
-
 /**
  * 模板渲染原理
  * @param {String} template
  * @param {Object} data
  */
 function render(template, data) {
-  const reg = /\{\{(\w+)\}\}/;
-
-  while (reg.test(template)) {
-    const key = reg.exec(template)[1];
-    template = template.replace(reg, data[key]);
-  }
-
-  return template;
+  let head = "let str = '';with(obj){str+=`",
+    tail = "`; return str;}";
+  const variable = /\{\{([^}]+)\}\}/g;
+  const expression = /\{\%([^%]+)\%\}/g;
+  template = head + template;
+  template = template.replace(variable, (_, r) => "${" + r + "}");
+  template = template.replace(expression, (_, r) => {
+    return "`;" + r + ";str+=`";
+  });
+  template += tail;
+  const fn = new Function("obj", template);
+  return fn(data);
 }
 
-console.log(render(template, { name: "kilic", age: 22 }));
+console.log(render(template, { arr: [1, 2, 3, 4] }));
