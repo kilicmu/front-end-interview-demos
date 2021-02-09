@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <rc-menu>
+        <rc-submenu title='submenu-1'>
+            <div>menu1</div>
+        </rc-submenu>
+        <rc-submenu title='submenu-2'>
+            <div>menu2</div>
+        </rc-submenu>
+    </rc-menu>
+
+    <template id="menu">
+        <div class="rc-menu">
+            <slot></slot>
+        </div>
+    </template>
+    <template id="submenu">
+        <div class="rc-submenu"></div>
+    </template>
+</body>
+</html>

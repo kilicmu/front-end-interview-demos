@@ -8,8 +8,8 @@
       "type": "pwa-node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\src\\20-sync-valve.js"
+      // "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/js/25-stream.js"
     }
   ]
 }

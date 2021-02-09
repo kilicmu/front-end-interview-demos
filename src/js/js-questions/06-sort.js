@@ -49,9 +49,34 @@ function mergeSort(arr) {
         ret.push(left.shift());
       }
     }
-    return ret.concat(left, right);
+    return [].concat(ret, left, right);
   }
 }
+
+
+
+
+
+function mergeSort(array) {
+  if(array.length <= 1) return array; 
+  const mid = Math.floor(array.length / 2);
+  const leftArray = array.slice(0, mid);
+  const rightArray = array.slice(mid);
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
+
+  function merge(lArr, rArr){
+    const ret = [];
+    while(lArr.length && rArr.length) {
+      if(lArr[0] > rArr[0]){
+        ret.push(rArr.shift());
+      }else{
+        ret.push(lArr.shift());
+      }
+    }
+    return [].concat(ret, lArr, rArr);
+  }
+} 
+
 
 
 console.log(mergeSort([1, 3, 5, 2, 15, 6, 8, 10]))

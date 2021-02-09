@@ -56,3 +56,38 @@ const jsonp = function (params) {
   scriptElm.src = url;
   bodyElm.appendChild(scriptElm);
 };
+
+
+
+/**
+ * 
+ * @param {*} urls 
+ * @param {*} max 
+ */
+const request = async (urls, max) => {
+  let lock;
+  const ret = []
+  let n = 0;
+  for(let i = 0; i < urls; i++) {
+    n++;
+    fetch(urls[i]).json().then((d) => {
+      n--;
+      lock && lock();
+      lock = null;
+      ret[i] = d;
+    })
+
+    if(n < max){
+      continue;
+    }else{
+      await getLock();
+    }
+  }
+
+  function getLock(){
+    return new Promise(res => {
+      lock = res;
+    })
+  }
+}
+

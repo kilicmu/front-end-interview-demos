@@ -21,3 +21,20 @@ const compose = function (middleware) {
 module.exports = {
   compose,
 };
+
+
+
+function compose(middlewares) {
+  return function(context, next){
+    return dispatch(0)
+    function dispatch(i) {
+      if(i === middlewares.length) Promise.resolve();
+      const fn = middlewares[i];
+      try{
+        return Promise.resolve(fn(context, dispatch.bind(null, i + 1)))
+      }catch(e){
+        return Promise.reject(e);
+      }
+    }
+  }
+}
