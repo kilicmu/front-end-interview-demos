@@ -1,0 +1,1 @@
+body{background-color:grey;color:green;padding:0;margin:0}input::-moz-placeholder{color:red;background-color:green}input:-ms-input-placeholder{color:red;background-color:green}input::placeholder{color:red;background-color:green}.rembox{width:10rem;height:12rem;background-color:#adff2f;box-sizing:border-box}#less-test{color:green}#sass-test{color:orange}

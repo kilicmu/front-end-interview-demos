@@ -1,0 +1,13 @@
+@import "./css/test.js";
+
+#div2{
+    background: yellow;
+    height: 20px;
+    width: 20px;
+}
+
+#test-css-loader1 {
+   background: yellow;
+    height: 20px;
+    width: 20px; 
+}

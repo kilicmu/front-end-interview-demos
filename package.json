@@ -12,6 +12,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "devDependencies": {
     "@types/node": "^14.14.22",
     "chai": "^4.2.0",

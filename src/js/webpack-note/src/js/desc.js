@@ -1,13 +1,14 @@
+// function readonly(target, key, descriptor) {
+//     console.log(descriptor);
+//     descriptor.writable = false;
+// }
 
+// class A {
+//     @readonly COM = 1
+// }
 
-function readonly(target, key, descriptor){
-    descriptor.writable = false;
-}
+// const a = new A();
+// // a.COM = 2;
+// // console.log('com', a.COM);
 
-class A {
-    @readonly COM = 1
-}
-
-let a = new A();
-a.COM = 2;
-console.log('com', a.COM)
+// export default a;
